@@ -6,6 +6,7 @@
     "boost-filesystem",
     "boost-multi-index",
     "boost-process",
+    "boost-random",
     "boost-signals2",
     "boost-test",
     "boost-thread",

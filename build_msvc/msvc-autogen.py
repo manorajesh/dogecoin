@@ -20,7 +20,7 @@ libs = [
     'libbitcoin_wallet_tool',
     'libbitcoin_wallet',
     'libbitcoin_zmq',
-    'bench_bitcoin',
+    'bench_dogecoin',
     'libtest_util',
 ]
 
@@ -67,6 +67,7 @@ def main():
 
     for makefile_name in os.listdir(SOURCE_DIR):
         if 'Makefile' in makefile_name:
+            #print(makefile_name) #Debugging
             parse_makefile(os.path.join(SOURCE_DIR, makefile_name))
     for key, value in lib_sources.items():
         vcxproj_filename = os.path.abspath(os.path.join(os.path.dirname(__file__), key, key + '.vcxproj'))
@@ -76,6 +77,7 @@ def main():
             content += '      <ObjectFileName>$(IntDir)' + object_filename + '</ObjectFileName>\n'
             content += '    </ClCompile>\n'
         with open(vcxproj_filename + '.in', 'r', encoding='utf-8') as vcxproj_in_file:
+            #print(vcxproj_filename) #Debugging
             with open(vcxproj_filename, 'w', encoding='utf-8') as vcxproj_file:
                 vcxproj_file.write(vcxproj_in_file.read().replace(
                     '@SOURCE_FILES@\n', content))
